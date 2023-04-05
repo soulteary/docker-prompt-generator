@@ -1,0 +1,5 @@
+FROM soulteary/prompt-generator:base
+LABEL org.opencontainers.image.authors="soulteary@gmail.com"
+
+COPY app/webui.cpu.py ./webui.py
+CMD ["python", "webui.py"]

@@ -1,0 +1,24 @@
+FROM soulteary/prompt-generator:base
+LABEL org.opencontainers.image.authors="soulteary@gmail.com"
+
+RUN pip config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple && \
+    pip install clip_interrogator git+https://github.com/pharmapsychotic/BLIP.git@lib#egg=blip
+
+RUN cat > /get-models.py <<EOF
+from clip_interrogator import Config, Interrogator
+import torch
+config = Config()
+config.device = 'cuda' if torch.cuda.is_available() else 'cpu'
+config.blip_offload = False if torch.cuda.is_available() else True
+config.chunk_size = 2048
+config.flavor_intermediate_count = 512
+config.blip_num_beams = 64
+config.clip_model_name = "ViT-H-14/laion2b_s32b_b79k"
+ci = Interrogator(config)
+EOF
+
+RUN python /get-models.py && \
+    rm -rf /get-models.py
+
+COPY app/webui.gpu.py ./webui.py
+CMD ["python", "webui.py"]
