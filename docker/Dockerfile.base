@@ -1,0 +1,18 @@
+FROM nvcr.io/nvidia/pytorch:22.12-py3
+LABEL org.opencontainers.image.authors="soulteary@gmail.com"
+
+RUN pip config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple && \
+    pip install transformers sentencepiece sacremoses && \
+    pip install gradio
+
+WORKDIR /app
+
+RUN cat > /get-models.py <<EOF
+from transformers import AutoTokenizer, AutoModelForSeq2SeqLM, pipeline
+AutoModelForSeq2SeqLM.from_pretrained('Helsinki-NLP/opus-mt-zh-en')
+AutoTokenizer.from_pretrained('Helsinki-NLP/opus-mt-zh-en')
+pipeline('text-generation', model='succinctly/text2image-prompt-generator')
+EOF
+
+RUN python /get-models.py && \
+    rm -rf /get-models.py
