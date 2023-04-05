@@ -4,6 +4,9 @@
 
 > Using a Model to generate prompts for Model applications.
 
+## Preview
+
+![](./.github/preview.jpg)
 
 ## Usage
 
