@@ -14,6 +14,7 @@ Models:
 
 - Prompt Model: [succinctly/text2image-prompt-generator](https://huggingface.co/succinctly/text2image-prompt-generator)
 - Translator Model: [Helsinki-NLP/opus-mt-zh-en](https://huggingface.co/Helsinki-NLP/opus-mt-zh-en) / [GitHub](https://github.com/Helsinki-NLP/OPUS-MT-train)
+- CLIP Model: [laion/CLIP-ViT-H-14-laion2B-s32B-b79K](https://huggingface.co/laion/CLIP-ViT-H-14-laion2B-s32B-b79K)
 
 Datasets:
 
