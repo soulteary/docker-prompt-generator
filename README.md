@@ -6,7 +6,13 @@
 
 ## Preview
 
+Like the official Mid Journey, it supports parsing prompts from images and secondary extensions based on prompts.
+
 ![](./.github/preview.jpg)
+
+Support writing prompts directly in Chinese, and then get prompts text that can be used for better effect generation.
+
+![](./.github/preview-translate.jpg)
 
 ## Usage
 
